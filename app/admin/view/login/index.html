@@ -1,0 +1,59 @@
+<!doctype html>
+<html class="x-admin-sm">
+<head>
+    <meta charset="UTF-8">
+    <title>后台登录-X-admin2.2</title>
+    {include file="public/head"}
+    <link rel="stylesheet" href="/static/lib/xadmin/css/login.css">
+</head>
+<body class="login-bg">
+
+<div class="login layui-anim layui-anim-up">
+    <div class="message">x-admin2.0-管理登录</div>
+    <div id="darkbannerwrap"></div>
+
+    <form method="post" class="layui-form" autocomplete="off">
+        <input name="hyname" placeholder="用户名" type="text" lay-verify="required" class="layui-input">
+        <hr class="hr15">
+        <input name="hypwd" lay-verify="required" placeholder="密码" type="password" class="layui-input">
+        <hr class="hr15">
+        <input name="hycode" lay-verify="required" placeholder="验证码" type="text" class="layui-input"
+               style="width: 50%;float: left">
+        <img src="{:url('login/verify')}" onclick='this.src="{:url(' login/verify')}?math="+Math.random()' alt="captcha"
+        width="50%"/>
+        <hr class="hr15">
+        <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+        <hr class="hr20">
+    </form>
+</div>
+
+<script>
+    $(function () {
+        layui.use('form', function () {
+            var form = layui.form;
+            // layer.msg('玩命卖萌中', function(){
+            //   //关闭后的操作
+            //   });
+            //监听提交
+            form.on('submit(login)', function (data) {
+                var index = layer.load(0, {shade: 0.5});
+                // alert(888)
+                $.post("{:url('dologin')}", data.field, function (res) {
+                    layer.close(index);
+                    if (res.code === {$status.normal}) {
+                        layer.msg(res.msg, {icon: 6, shade: 0.5}, function () {
+
+                            window.location.href = "{:url('index/index')}"
+                        })
+                    } else {
+                        layer.msg(res.msg, {icon: 5, shade: 0.5})
+                    }
+                })
+                return false;
+            });
+        });
+    })
+</script>
+<!-- 底部结束 -->
+</body>
+</html>

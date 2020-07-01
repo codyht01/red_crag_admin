@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.2</title>
+    {include file="public/head"}
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form" autocomplete="off">
+            <div class="layui-form-item">
+                <label for="name" class="layui-form-label">
+                    <span class="x-red">*</span>分类名称
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="name" name="name" required="" lay-verify="required"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>将会成为您唯一的分类名
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="pid" class="layui-form-label"><span class="x-red">*</span>选择分类</label>
+                <div class="layui-input-inline">
+                    <select name="pid" id="pid" class="layui-select" lay-search>
+                        <option value="">选择分类</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="icon" class="layui-form-label">图标</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" id="icon" name="icon" placeholder="图标">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="path" class="layui-form-label">路径</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" id="path" placeholder="请输入路径">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="L_repass" class="layui-form-label">
+                </label>
+                <button class="layui-btn" lay-filter="add" lay-submit="">
+                    增加
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    layui.use(['form', 'layer'],
+        function () {
+            $ = layui.jquery;
+            var form = layui.form,
+                layer = layui.layer;
+
+        });
+</script>
+
+</body>
+
+</html>

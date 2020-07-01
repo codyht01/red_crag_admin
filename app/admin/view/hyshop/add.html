@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.2</title>
+    {include file="public/head"}
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <label class=" layui-form layui-form-label">商品名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="title" id="goods_name" lay-verify="required" placeholder="请输入商品名称"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form layui-form-item">
+                <label class="layui-form-label">商品副标题</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="sub_title" id="subtitle" lay-verify="required"
+                           placeholder="请输入商品副标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form layui-form-item">
+                <label class="layui-form-label">商品促销语</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="promotion_title" id="goods_sales" lay-verify="required"
+                           placeholder="请输入商品促销语"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form layui-form-item">
+                <label class="layui-form-label">关键词</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="keywords" id="goods_word" placeholder="请输入商品关键词"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form layui-form-item">
+                <label class="layui-form-label">商品单位</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="goods_unit" id="goods_unit" placeholder="请输入商品单位"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form layui-form-item">
+                <label class="layui-form-label">库存显示</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="is_show_stock" value="1" title="是" checked="">
+                    <input type="radio" name="is_show_stock" value="0" title="否">
+                </div>
+            </div>
+            <div class="layui-form layui-form-item">
+                <label class="layui-form-label">总库存</label>
+                <div class="layui-input-inline">
+                    <input type="number" name="stock" id="goods_stock" placeholder="请输入商品总库存 /件"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">生产日期</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="production_time" id="goods_date" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item spec-is-show">
+                <label class="layui-form-label">市场价格</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="market_price" id="market_price" placeholder="请输入市场价格 /元"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item spec-is-show">
+                <label class="layui-form-label">销售价格</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="sell_price" id="sell_price" placeholder="请输入销售价格 /元"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">上传 大图</label>
+                <div class="layui-input-inline">
+                    <div class="layui-upload">
+                        <button type="button" class="layui-btn" id="btn_main">上传图片</button>
+                        <div class="layui-upload-list big_image">
+                            <img src="" onerror="this.src='/static/image/error.jpg'" class="layui-upload-img"
+                                 id="demoTextImg" style="width: 128px;height: 128px;">
+                            <div id="btn-img-pro"></div>
+                            <p id="demoText"></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <style>
+                .banner_img_d {
+                    border: 1px solid #ccc;
+                    width: 138px;
+                    text-align: center;
+                    margin-right: 5px;
+                    display: inline-block;
+                }
+
+                .banner_img_d_i {
+                    width: 138px;
+                    height: 138px;
+                }
+
+                .banner_img_p {
+                    width: 100%;
+                    background: #ccc;
+                    color: #fff;
+                }
+
+                .banner_img_p span {
+                    display: inline-block;
+                    width: 48%;
+                    border: none;
+                    padding: 0;
+                    margin: 0;
+                    cursor: pointer;
+                }
+
+                .banner_img_del {
+
+                }
+
+                .banner_img_upload {
+                    border-left: 1px solid #fff;
+                }
+            </style>
+            <div class="layui-form-item">
+                <label class="layui-form-label">上传轮播图</label>
+                <div class="layui-input-block">
+                    <div class="layui-upload">
+                        <button type="button" class="layui-btn" id="btn_banner">多图片上传</button>
+                        <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                            预览图：
+                            <div class="layui-upload-list" id="banner_img">
+                            </div>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">商品详情</label>
+                <div class="layui-input-block">
+                    <div class="layui-upload">
+                        <button type="button" class="layui-btn" id="btn_banner_detail">上传详情图</button>
+                        <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                            预览图：
+                            <div class="layui-upload-list" id="banner_img_detail">
+                            </div>
+                            <p id="demoTextDetail"></p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item layui-form">
+                <div class="layui-input-block">
+                    <button type="submit" class="layui-btn" id='btnSubmit' lay-submit="" lay-filter="goods_submit">
+                        立即提交
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+    <script type="text/javascript">
+        layui.config({
+            base: '/static/lib/lay_ext/'
+        }).extend({ //设定模块别名
+            sku: 'laySku'
+        });
+        layui.use(['form', 'layer', 'jquery', 'laydate', 'element', 'layedit', 'upload'], function () {
+            $ = layui.jquery;
+            var form = layui.form
+                , layer = layui.layer
+                , laydate = layui.laydate
+                , element = layui.element
+                , layedit = layui.layedit
+                , upload = layui.upload;
+            laydate.render({
+                elem: '#goods_date'
+            });
+            let edit_index = layedit.build('content', {
+                uploadImage: {
+                    url: "{:url('upload/layedit')}" //接口url
+                    , type: '' //默认post
+                }
+            })
+
+            /**
+             * 单图上传
+             */
+            let uploadInst = upload.render({
+                elem: '#btn_main' //绑定元素
+                , url: "{:url('upload/image')}" //上传接口
+                , field: 'image'
+                , before: function (obj) {
+                    //预读本地文件示例，不支持ie8
+
+                    obj.preview(function (index, file, result) {
+                        $('#demoTextImg').attr('src', result); //图片链接（base64）
+                        $("#btn-img-pro").append('<div class="layui-progress" lay-filter="btn_main" lay-showPercent="yes">\n' +
+                            '  <div class="layui-progress-bar layui-bg-red" lay-percent="20%"></div>\n' +
+                            '</div>')
+                    });
+                }
+                , done: function (res) {
+                    //上传完毕回调
+                    if (res.code === {$status.normal}) {
+                        layer.msg(res.msg, {icon: 6, shade: 0.5}, function () {
+
+                            $("#demoText").html('<input type="hidden" name="big_image" value="' + res.data.src + '">');
+                        })
+                    } else {
+                        layer.msg(res.msg, {icon: 5})
+                    }
+                }
+                , progress: function (n, elem) {
+                    var percent = n + '%' //获取进度百分比
+                    element.progress('btn_main', percent); //可配合 layui 进度条元素使用
+
+                    //以下系 layui 2.5.6 新增
+                }
+                , error: function () {
+                    //请求异常回调
+                }
+            });
+
+            //
+            let btn_banner = upload.render({
+                elem: '#btn_banner'
+                , url: "{:url('upload/image')}" //改成您自己的上传接口
+                , multiple: true
+                , field: 'image'
+                , allDone: function (obj) { //当文件全部被提交后，才触发
+                    // console.log(obj.total); //得到总文件数
+                    // console.log(obj.successful); //请求成功的文件数
+                    // console.log(obj.aborted); //请求失败的文件数
+                }
+
+                , progress: function (n, elem) {
+                    var percent = n + '%' //获取进度百分比
+                    element.progress('banner_img', percent); //可配合 layui 进度条元素使用
+
+                    //以下系 layui 2.5.6 新增
+                }
+                , before: function (obj) {
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        // console.log(index)
+                        let html = '';
+                        html += '<div class="banner_img_d">';
+                        html += '<img src="' + result + '" alt="' + file.name + '" class="layui-upload-img banner_img_d_i">';
+                        html += '<div class="layui-progress" lay-filter="banner_img" >';
+                        html += '<div class="layui-progress-bar" lay-percent="0%"></div>';
+                        html += '</div>';
+                        html += '<p class="banner_img_p">';
+                        html += '<span class="banner_img_del"><i class="layui-icon">&#xe640;</i></span>';
+                        html += '<span class="banner_img_upload"><i class="layui-icon">&#xe681;</i></span>';
+                        html += '</p>';
+                        html += '</div>';
+                        $('#banner_img').append(html)
+                    });
+                }
+                , done: function (res, index, upload) {
+                    //
+                    if (res.code === {$status.normal}) {
+                        layer.msg(res.msg, {icon: 6, shade: 0.5}, function () {
+
+                            $("#banner_img").append('<input type="hidden" name="image_banner[]" value="' + res.data.src + '">');
+                        })
+                    } else {
+                        layer.msg(res.msg, {icon: 5})
+                    }
+                }
+                , error: function (index, upload) {
+                    //当上传失败时，你可以生成一个“重新上传”的按钮，点击该按钮时，执行 upload() 方法即可实现重新上传
+                }
+            });
+            //
+            let btn_banner_detail = upload.render({
+                elem: '#btn_banner_detail'
+                , url: "{:url('upload/image')}" //改成您自己的上传接口
+                , multiple: true
+                , field: 'image'
+                , accept: 'images'
+                , acceptMime: 'image/jpeg,image/png,image/svgomg,image/webp,image/gif'
+                , allDone: function (obj) { //当文件全部被提交后，才触发
+                    // console.log(obj.total); //得到总文件数
+                    // console.log(obj.successful); //请求成功的文件数
+                    // console.log(obj.aborted); //请求失败的文件数
+                }
+
+                , progress: function (n, elem) {
+                    var percent = n + '%' //获取进度百分比
+                    element.progress('banner_img_detail', percent); //可配合 layui 进度条元素使用
+
+                    //以下系 layui 2.5.6 新增
+                }
+                , before: function (obj) {
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        // console.log(index)
+                        let html = '';
+                        html += '<div class="banner_img_d">';
+                        html += '<img src="' + result + '" alt="' + file.name + '" class="layui-upload-img banner_img_d_i">';
+                        html += '<div class="layui-progress" lay-filter="banner_img" >';
+                        html += '<div class="layui-progress-bar" lay-percent="0%"></div>';
+                        html += '</div>';
+                        html += '<p class="banner_img_p">';
+                        html += '<span class="banner_img_del"><i class="layui-icon">&#xe640;</i></span>';
+                        html += '<span class="banner_img_upload"><i class="layui-icon">&#xe681;</i></span>';
+                        html += '</p>';
+                        html += '</div>';
+                        $('#banner_img_detail').append(html)
+                    });
+                }
+                , done: function (res, index, upload) {
+                    //
+                    if (res.code === {$status.normal}) {
+                        layer.msg(res.msg, {icon: 6, shade: 0.5}, function () {
+                            $("#demoTextDetail").append('<input type="hidden" name="image_banner_detail[]" value="' + res.data.src + '">');
+                        })
+                    } else {
+                        layer.msg(res.msg, {icon: 5})
+                    }
+                }
+                , error: function (index, upload) {
+                    //当上传失败时，你可以生成一个“重新上传”的按钮，点击该按钮时，执行 upload() 方法即可实现重新上传
+                }
+            });
+            form.on('submit(goods_submit)', function (data) {
+                let goods_data = {
+                    ...data.field,
+
+                    description: layedit.getContent(edit_index),
+                };
+                console.log(goods_data);//这个data就是表单的值 包含以下值
+
+                url = '{:url("hyshop/save")}';
+                // 发送ajax请求
+                layObj.post(url, goods_data, (res) => {
+                    if (res.code === {$status.normal}) {
+                        layer.msg(res.msg, {icon: 6, shade: 0.5}, function () {
+                            xadmin.close();
+                            xadmin.father_reload();
+                        });
+                    } else {
+                        layer.msg(res.msg, {icon: 5, shade: 0.5});
+                    }
+                })
+
+                return false;
+            });
+
+
+        });
+    </script>
+
+</body>
+
+</html>
